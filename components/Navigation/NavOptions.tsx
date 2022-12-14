@@ -5,8 +5,11 @@ import { navOptions } from "../../utils/data-nav-options";
 
 import tw from "twrnc";
 import { Icon } from "@rneui/themed";
+import { useNavigation } from "@react-navigation/native";
 
 const NavOptions = () => {
+  const navigation = useNavigation();
+
   return (
     <FlatList
       data={navOptions}
@@ -14,6 +17,7 @@ const NavOptions = () => {
       horizontal
       renderItem={({ item }) => (
         <TouchableOpacity
+          onPress={() => navigation.navigate(item.screen)}
           style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40 rounded-md shadow-md`}
         >
           <View>
