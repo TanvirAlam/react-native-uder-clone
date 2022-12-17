@@ -6,7 +6,7 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 
 import tw from "twrnc";
 import { useDispatch } from "react-redux";
-import { setDestination, setOrigin } from "../../slices/navSlice";
+import { setDestination } from "../../slices/navSlice";
 import { useNavigation } from "@react-navigation/native";
 
 const NavigateCard = () => {
@@ -27,7 +27,7 @@ const NavigateCard = () => {
             minLength={2}
             onPress={(data, details = null) => {
               dispatch(
-                setOrigin({
+                setDestination({
                   location: details?.geometry.location,
                   description: data?.description,
                 })
