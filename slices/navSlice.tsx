@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Point } from "react-native-maps";
 
 const initialState = {
   origin: null,
   destination: null,
   travelTimeInformation: null,
+};
+
+type stateProps = {
+  location: Point | undefined;
+  description: string;
 };
 
 export const navSlice = createSlice({
