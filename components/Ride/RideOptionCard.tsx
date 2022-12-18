@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import tw from "twrnc";
 import { Icon, Image } from "@rneui/themed";
@@ -15,6 +15,7 @@ import { rideOptions } from "../../utils/data-ride-options";
 
 const RideOptionCard = () => {
   const navigation = useNavigation();
+  const [selected, setSelected] = useState(null);
 
   return (
     <SafeAreaView style={tw`bg-white flex-grow`}>
@@ -32,20 +33,33 @@ const RideOptionCard = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={tw`flex-row justify-between items-center px-10`}
+            onPress={() => setSelected(item)}
+            style={tw`flex-row justify-between items-center px-10 ${
+              item.id === selected?.id && "bg-gray-200"
+            }`}
           >
             <Image
               style={{ width: 100, height: 100, resizeMode: "contain" }}
               source={{ uri: item.image }}
             />
             <View style={tw`-ml-6`}>
-              <Text style={tw`text-xl font-samibold`}>{item.title}</Text>
+              <Text style={tw`text-xl font-semibold`}>{item.title}</Text>
               <Text>travel time ...</Text>
             </View>
             <Text style={tw`text-xl`}>99 DKK</Text>
           </TouchableOpacity>
         )}
       />
+      <View style={tw`items-center justify-center`}>
+        <TouchableOpacity
+          disabled={!selected}
+          style={tw`bg-black ${!selected && "bg-gray-300"}`}
+        >
+          <Text style={tw`text-center text-white text-xl p-2`}>
+            Choose {selected?.title}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
