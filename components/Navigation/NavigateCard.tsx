@@ -52,9 +52,10 @@ const NavigateCard = () => {
         <NavFavorite />
       </View>
       <View
-        style={tw`flex-row bg-white justify-evenly py-2 mt-suto border--t broder-gray-100`}
+        style={tw`flex-row bg-white justify-evenly py-2 mt-suto border--t border-gray-100`}
       >
         <TouchableOpacity
+          onPress={() => navigation.navigate("RideOptionCard")}
           style={tw`flex flex-row bg-black justify-between w-24 px-4 py-3 rounded-full`}
         >
           <Icon name="car" type="ionicon" color="white" size={16} />
